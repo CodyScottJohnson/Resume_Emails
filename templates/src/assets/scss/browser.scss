@@ -1,0 +1,23 @@
+.file_explorer {
+    iframe {
+        border: none;
+        outline: none;
+        width: 100%;
+        height: 500px;
+        display: block;
+        position: relative;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.23), 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    }
+    .email {
+        display: inline-block;
+        width: 49%;
+        text-align: center;
+    }
+    &.container {
+        max-width: 2000px;
+        width: 100%;
+        margin: 0;
+    }
+}

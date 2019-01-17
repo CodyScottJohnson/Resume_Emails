@@ -12,7 +12,7 @@ import path     from 'path';
 import merge    from 'merge-stream';
 import beep     from 'beepbeep';
 import colors   from 'colors';
-
+import webshot from 'gulp-webshot';
 const $ = plugins();
 
 // Look for the --production flag
@@ -26,6 +26,8 @@ var CONFIG;
 gulp.task('build',
   gulp.series(clean, pages, sass, images, inline));
 
+gulp.task('createPreview',
+  gulp.series(createPreviewFunc));
 // Build emails, run the server, and watch for file changes
 gulp.task('default',
   gulp.series('build', server, watch));
@@ -104,10 +106,27 @@ function server(done) {
   });
   done();
 }
+function createPreviewFunc ( file ) {
+ 
+  var dirPart, filePart;
+  file.replace(/^(.*\/)?([^/]*)$/, function(_, dir, file) {
+    dirPart = dir; filePart = file;
+  });
+  console.log(dirPart)
+  console.log(filePart)
+  return gulp.src('./'+file)
+        .pipe(webshot({dest:dirPart+'previews',
+        root:dirPart,
+        fileName: filePart
+      })).pipe(gulp.dest(dirPart+'previews'));
+  
 
+
+};
 // Watch for file changes
 function watch() {
   gulp.watch('src/pages/**/*.html').on('all', gulp.series(pages, inline, browser.reload));
+  //gulp.watch('src/pages/**/*.html').on("change", createPreviewFunc)
   gulp.watch(['src/layouts/**/*', 'src/partials/**/*']).on('all', gulp.series(resetPages, pages, inline, browser.reload));
   gulp.watch(['../scss/**/*.scss', 'src/assets/scss/**/*.scss']).on('all', gulp.series(resetPages, sass, pages, inline, browser.reload));
   gulp.watch('src/assets/img/**/*').on('all', gulp.series(images, browser.reload));

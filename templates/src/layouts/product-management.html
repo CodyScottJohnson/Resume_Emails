@@ -1,0 +1,91 @@
+{{!-- This is the base layout for your project, and will be used on every page. --}}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" class="pma">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="../css/app.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>{{subject}}</title>
+</head>
+
+<body >
+  <!-- <style> -->
+  <span class="preheader">{{description}}</span>
+  <table class="body" >
+    <tr>
+      <td class="center" align="center" valign="top">
+        <center>
+          <wrapper>
+            <container >
+              <container class="header-primary">
+                <row>
+                  <columns large="6" small="6" valign="middle">
+                    <img height="44" style="height:44px" src='https://uofupma.com/assets/img/PMA-Logo-Light.png'>
+                  </columns>
+                </row>
+              </container>
+              <spacer size="36"></spacer>
+              <row>
+                {{!-- Pages you create in the src/pages/ folder are inserted here when the flattened emails are created. --}} {{> body}}
+              </row>
+            
+                
+              <container class="footer-primary">
+                <row>
+                  <columns small="3" larg="3"></columns>
+                  <columns small="6">
+                    <spacer size="20"></spacer>
+                    <container>
+                      <row class="collapse">
+                        <columns small="3"></columns>
+                        <columns small="6">
+                          <div class="line">
+
+                          </div>
+                        </columns>
+                        <columns small="3"></columns>
+                      </row>
+                 
+                    </container>
+                  </columns>
+                  <columns small="3" larg="3"></columns>
+                </row>
+                <container>
+                  <row>
+                    <columns>
+                        <center><img height="24" style="height:24px" src='https://uofupma.com/assets/img/PMA-Logo-Light.png'></center>
+                    </columns>
+                  </row>
+                  <row>
+                    <columns>
+                      <p class="footer_text text-center">University of Utah Product Management Association<br /> 533 W 2600 S #135, Bountiful, UT 84010</p>
+                    </columns>
+                  </row>
+                </container>
+                <container>
+                  <row>
+                    <columns>
+                      <p class="link_text text-center"><a class="link_text" href="https://jfsapp.com/Open/API/Unsubscribe/\{{ GUID }}">Unsubscribe</a></p>
+                    </columns>
+                  </row>
+
+                </container>
+
+              </container>
+            </container>
+          </wrapper>
+
+
+        </center>
+      </td>
+    </tr>
+  </table>
+  <!-- prevent Gmail on iOS font size manipulation -->
+  <div style="display:none; white-space:nowrap; font:15px courier; line-height:0;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </div>
+</body>
+
+</html>
